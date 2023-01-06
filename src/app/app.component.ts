@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,27 @@ import { Component } from '@angular/core';
 export class AppComponent {
   //title = 'shop4less';
 
-  factorialInput : number = 1;
-  factorialResult!: number;
+  //factorialInput : number = 1;
+  //factorialResult!: number;
 
-  constructor() {
-    this.calculateFactorial();
+  constructor(private authService: AuthService) {
+    //this.calculateFactorial();
   }
 
-  calculateFactorial(){
+  title = 'Expense Manager';
+  isUserLoggedIn = false;
+
+  ngOnInit() {
+     let storeData = localStorage.getItem("isUserLoggedIn");
+     console.log("StoreData: " + storeData);
+
+     if( storeData != null && storeData == "true")
+        this.isUserLoggedIn = true;
+     else
+        this.isUserLoggedIn = false;
+  }
+
+  /*calculateFactorial(){
 
     if (typeof Worker !== 'undefined') {
       // Create a new
@@ -30,11 +44,9 @@ export class AppComponent {
       // You should add a fallback so that your program still executes correctly.
     }
   
-  }
+  }*/
   
 }
-
-
 
 /*if (typeof Worker !== 'undefined') {
   // Create a new
